@@ -1,0 +1,22 @@
+CC = g++
+CFLAGS = -g -Winline -Wl,-defsym,_DYNAMIC=0 # -pedantic -Werror -v 
+
+OBJECTS = \
+
+LIBS = -lSDL2
+INC = 
+
+main : $(OBJECTS) $(UT_OBJ)
+	$(CC) $(CFLAGS) $(OBJECTS) main.cc -o ray $(LIBS)
+
+%.o : %.cc %.hh Makefile
+	$(CC) $(CFLAGS) -c $<
+clean :
+	rm *.o
+	rm scheme
+	rm TAGS
+	rm tst/*~
+	rm *~
+
+tags :
+	find . -name "*.[chCH]" -print | etags -	
